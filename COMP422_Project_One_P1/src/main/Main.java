@@ -7,4 +7,8 @@ public class Main {
 
 	}
 
+	public static void d(Object o) {
+		System.out.println(o.toString() +"\n");
+		
+	}
 }
