@@ -27,4 +27,14 @@ public  class FileConverter {
 		return src;
 
 	}
+	public void  writeOut(BufferedImage b, String s){
+		
+		File outputFile = new File(s +".bmp");
+		try{
+
+		ImageIO.write(b, "bmp", outputFile);
+		}catch(IOException e){
+			System.out.println(e.toString());
+		}
+	}
 }

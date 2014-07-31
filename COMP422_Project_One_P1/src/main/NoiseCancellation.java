@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class EdgeDetection {
+public class NoiseCancellation {
 
 	private int[][] rowMask = { { -1, -2, -1 }, { 0, 0, 0 }, { 1, 2, 1 } };
 	private int[][] colMask = { { -1, 0, 1 }, { -2, 0, 2 }, { -1, 0, -1 } };
@@ -18,7 +18,7 @@ public class EdgeDetection {
 	private BufferedImage tempImg;
 	private BufferedImage out;
 
-	public EdgeDetection(BufferedImage in) {
+	public NoiseCancellation(BufferedImage in) {
 		src = in;
 		width = src.getWidth();
 		height = src.getHeight();
