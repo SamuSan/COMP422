@@ -25,6 +25,8 @@ public class Main {
 			break;
 		case 2:
 			System.out.println("Noise Cancellation selected");
+			doNoiseCancellation();
+			System.out.println("Done");
 			break;
 		case 3:
 			System.out.println("Image Enhancement selected");
@@ -40,6 +42,10 @@ public class Main {
 		EdgeDetection ed = new EdgeDetection(f.convert("test-pattern.tif"));
 		ed.performSobel();
 
+	}
+	private static void doNoiseCancellation(){
+		NoiseCancellation nc = new NoiseCancellation(f.convert("ckt-board-saltpep.tif"));
+		nc.performNoiseCancellation();
 	}
 
 }
