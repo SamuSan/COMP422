@@ -45,7 +45,7 @@ public class Main {
 	}
 	private static void doNoiseCancellation(){
 		NoiseCancellation nc = new NoiseCancellation(f.convert("ckt-board-saltpep.tif"));
-		nc.performNoiseCancellation();
+		nc.performMedianNoiseCancellation();
 	}
 
 }
