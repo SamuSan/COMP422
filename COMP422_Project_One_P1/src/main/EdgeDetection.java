@@ -1,49 +1,31 @@
 package main;
-import static main.Main.*;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class EdgeDetection {
 
-	private Image src;
-	private Image out;
-	
-	public EdgeDetection (){
-		
+	private BufferedImage src;
+	private BufferedImage out;
+
+	public EdgeDetection(BufferedImage in) {
+		src = in;
+	}
+
+
+
+	public BufferedImage getSrc() {
+		return src;
+	}
+
+	public BufferedImage getOut() {
+		return out;
 	}
 	
 	
-	public boolean load(String file){
-		
-		InputStream input;
-		try {
-			input = ClassLoader.getSystemResourceAsStream(file);
-			
-			if(input != null){
-				BufferedReader buff = new BufferedReader(new InputStreamReader(input));	
-				String line = buff.readLine();
-				while(line != null){
-					d(line);
-					
-					 line = buff.readLine();
-				}
-				
-				
-				//src = new Image(image);
-				
-			
-				return true;
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-		return false;
-	}
-	
-	
+
 }
