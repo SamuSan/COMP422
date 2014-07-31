@@ -32,49 +32,30 @@ public class NoiseCancellation {
 		System.out.println("Hiehgt "+src.getHeight());
 		System.out.println("Width "+src.getWidth());
 		int pixVal = 0;
-		tempImg = new BufferedImage(width + 2, height + 2, src.getType());
-		Color temp = new Color(255, 255, 255);
-		System.out.println("Hiehgt "+tempImg.getHeight());
-		System.out.println("Width "+(tempImg.getWidth()));
-		for (int i = 0; i < tempImg.getWidth()-1; i++) {
-			tempImg.setRGB(i,0, temp.getRGB());
-			System.out.println(i);
-//			for (int j = 0; j < tempImg.getHeight()-1; j++) {
-//				System.out.printf(" i ; %d  j ; %d\n", i,j);
-//				tempImg.setRGB(j,i, temp.getRGB());
-//			}
-		}
-
-		for (int i = 1; i < tempImg.getWidth() - 2; i++) {
-			for (int j = 1; j < tempImg.getHeight() - 2; j++) {
-				int rgb = src.getRGB(j, i);
-				tempImg.setRGB(j, i, src.getRGB(j, i));
-			}
-		}
-
-		out = new BufferedImage(tempImg.getWidth(), tempImg.getHeight(),
-				tempImg.getType());
-		for (int i = 1; i < tempImg.getWidth() - 1; i++) {
-			for (int j = 1; j < tempImg.getHeight() - 1; j++) {
+		out = new BufferedImage(src.getWidth(), src.getHeight(),
+				src.getType());
+		for (int j = 1; j < out.getWidth()-1; j++) {
+			for (int i = 1; i < out.getHeight()-1; i++) {
 				ArrayList<Integer> vals = new ArrayList<Integer>();
 
-				vals.add(tempImg.getRGB(j - 1, i - 1));// topleft
-				vals.add(tempImg.getRGB(j - 1, i));// topmid
-				vals.add(tempImg.getRGB(j - 1, i + 1));// topright
-				vals.add(tempImg.getRGB(j, i - 1));// midleft
-				vals.add(tempImg.getRGB(j, i));// midmid
-				vals.add(tempImg.getRGB(j, i + 1));// midright
-				vals.add(tempImg.getRGB(j + 1, i - 1));// botleft
-				vals.add(tempImg.getRGB(j + 1, i));// botmid
-				vals.add(tempImg.getRGB(j + 1, i + 1));// botright
+				vals.add(src.getRGB(j - 1, i - 1));// topleft
+				vals.add(src.getRGB(j - 1, i));// topmid
+				vals.add(src.getRGB(j - 1, i + 1));// topright
+				vals.add(src.getRGB(j, i - 1));// midleft
+				vals.add(src.getRGB(j, i));// midmid
+				vals.add(src.getRGB(j, i + 1));// midright
+				vals.add(src.getRGB(j + 1, i - 1));// botleft
+				vals.add(src.getRGB(j + 1, i));// botmid
+				vals.add(src.getRGB(j + 1, i + 1));// botright
 
 				Collections.sort(vals);
 				pixVal = vals.get(5);
+//				System.out.println(i  + " : " + j);
 				out.setRGB(j, i, pixVal);
 
 			}
 		}
-
+//
 		FileConverter f = new FileConverter();
 		f.writeOut(out, "outputNoise");
 	}
