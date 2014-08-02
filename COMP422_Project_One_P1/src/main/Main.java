@@ -30,6 +30,8 @@ public class Main {
 			break;
 		case 3:
 			System.out.println("Image Enhancement selected");
+			doImageEnhancement();
+			System.out.println("Done");
 			break;
 
 		default:
@@ -53,6 +55,5 @@ public class Main {
 	private static void doImageEnhancement() {
 		ImageEnhancement ie = new ImageEnhancement(f.convert("blurry-moon.tif"));
 		ie.performImageEnhance();
-		System.out.println("Done");
 	}
 }

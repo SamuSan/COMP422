@@ -10,8 +10,14 @@ import javax.imageio.ImageIO;
 
 public class ImageEnhancement {
 
-	private int[][] rowMask = { { -1, -2, -1 }, { 0, 0, 0 }, { 1, 2, 1 } };
-	private int[][] colMask = { { -1, 0, 1 }, { -2, 0, 2 }, { -1, 0, -1 } };
+//	private int[][] enhanceMask = { { -1, -1, -1 }, 
+//									{ -1, 8, -1 }, 
+//									{ -1, -1, -1 } };
+	
+	private int[][] enhanceMask = { { 0, 0, 0 }, 
+									{0, 1, 0 }, 
+									{ 0, 0, 0 } };
+	
 	private int width = 0;
 	private int height = 0;
 	private BufferedImage src;
@@ -40,66 +46,46 @@ public class ImageEnhancement {
 
 		for (int i = 0; i < tempImg.getWidth(); i++) {
 			for (int j = 0; j < tempImg.getHeight(); j++) {
-				tempImg.setRGB(j, i, temp.getRGB());
+				tempImg.setRGB(i, j, temp.getRGB());
 			}
 		}
 
 		for (int i = 1; i < tempImg.getWidth() - 2; i++) {
 			for (int j = 1; j < tempImg.getHeight() - 2; j++) {
-				int rgb = src.getRGB(j, i);
+				int rgb = src.getRGB(i, j);
 //				System.out.println(rgb);
-				tempImg.setRGB(j, i, src.getRGB(j, i));
-			}
-		}
-
-		for (int i = 0; i < rowMask.length; i++) {
-			for (int j = 0; j < rowMask[0].length; j++) {
-//				System.out.printf("%d", rowMask[i][j]);
-			}
-//			System.out.println();
-		}
-
-		for (int i = 0; i < rowMask.length; i++) {
-			for (int j = 0; j < rowMask[0].length; j++) {
-//				System.out.printf("%d i:%d  j: %d  ", colMask[i][j], i, j);
-			}
-//			System.out.println();
-		}
-out = new BufferedImage(tempImg.getWidth(), tempImg.getHeight(), tempImg.getType());
-		for (int i = 1; i < tempImg.getWidth()-1; i++) {
-			for (int j = 1; j < tempImg.getHeight()-1; j++) {
-				s1=0;
-				s1 += rowMask[0][0] * tempImg.getRGB(j - 1, i - 1)// topleft
-						+ rowMask[0][1] * tempImg.getRGB(j - 1, i)// topmid
-						+ rowMask[0][2] * tempImg.getRGB(j - 1, i + 1)// topright
-						+ rowMask[1][0] * tempImg.getRGB(j, i - 1)// midleft
-						+ rowMask[1][1] * tempImg.getRGB(j, i)//midmid
-						+ rowMask[1][2] * tempImg.getRGB(j, i + 1)// midright
-						+ rowMask[2][0] * tempImg.getRGB(j + 1, i - 1)// botleft
-						+ rowMask[2][1] * tempImg.getRGB(j + 1, i)// botmid
-						+ rowMask[2][2] * tempImg.getRGB(j + 1, i + 1);// botright
-				
-				s2=0;
-				s2 += colMask[0][0] * tempImg.getRGB(j - 1, i - 1)// topleft
-						+ colMask[0][1] * tempImg.getRGB(j - 1, i)// topmid
-						+ colMask[0][2] * tempImg.getRGB(j - 1, i + 1)// topright
-						+ colMask[1][0] * tempImg.getRGB(j, i - 1)// midleft
-						+ colMask[1][1] * tempImg.getRGB(j, i)//midmid
-						+ colMask[1][2] * tempImg.getRGB(j, i + 1)// midright
-						+ colMask[2][0] * tempImg.getRGB(j + 1, i - 1)// botleft
-						+ colMask[2][1] * tempImg.getRGB(j + 1, i)// botmid
-						+ colMask[2][2] * tempImg.getRGB(j + 1, i + 1);// botright
-				
-//				System.out.println("S1: "+s1+":: S2: "+ s2);
-				pixVal = (int )Math.sqrt(Math.pow(s1, 2) + Math.pow(s2, 2));
-				out.setRGB(j, i, pixVal);
-//				System.out.println("Pix Value: " + pixVal);
-
+				tempImg.setRGB(i, j, src.getRGB(i, j));
 			}
 		}
 
 		 FileConverter f = new FileConverter();
+		 f.writeOut(tempImg, "outputTest");
+
+		 for (int i = 0; i < enhanceMask.length; i++) {
+			for (int j = 0; j < enhanceMask[0].length; j++) {
+				System.out.printf("%d",enhanceMask[i][j]);
+			}
+			System.out.println();
+		}
+		 
+out = new BufferedImage(tempImg.getWidth(), tempImg.getHeight(), tempImg.getType());
+		for (int i = 1; i < tempImg.getWidth()-1; i++) {
+			for (int j = 1; j < tempImg.getHeight()-1; j++) {
+				pixVal += enhanceMask[0][0] * tempImg.getRGB(i - 1, j - 1);// topleft
+						
+				
+				
+//				System.out.println("S1: "+s1+":: S2: "+ s2);
+//				pixVal = (int )Math.sqrt(Math.pow(s1, 2) + Math.pow(s2, 2));
+				out.setRGB(i, j, pixVal);
+//				System.out.println("Pix Value: " + pixVal);
+
+			}
+			pixVal =0;
+		}
+
 		 f.writeOut(out, "outputEnhanced");
 	}
 
+		
 }
