@@ -43,9 +43,16 @@ public class Main {
 		ed.performSobel();
 
 	}
-	private static void doNoiseCancellation(){
-		NoiseCancellation nc = new NoiseCancellation(f.convert("ckt-board-saltpep.tif"));
+
+	private static void doNoiseCancellation() {
+		NoiseCancellation nc = new NoiseCancellation(
+				f.convert("ckt-board-saltpep.tif"));
 		nc.performMedianNoiseCancellation();
 	}
 
+	private static void doImageEnhancement() {
+		ImageEnhancement ie = new ImageEnhancement(f.convert("blurry-moon.tif"));
+		ie.performImageEnhance();
+		System.out.println("Done");
+	}
 }
