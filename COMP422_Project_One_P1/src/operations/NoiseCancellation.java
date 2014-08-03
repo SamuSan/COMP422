@@ -1,4 +1,4 @@
-package main;
+package operations;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.imageio.ImageIO;
+
+import main.FileConverter;
 
 public class NoiseCancellation {
 

@@ -2,6 +2,7 @@ package test;
 import static main.FileConverter.*;
 import junit.framework.TestCase;
 import main.*;
+import operations.EdgeDetection;
 
 import org.junit.*;
 

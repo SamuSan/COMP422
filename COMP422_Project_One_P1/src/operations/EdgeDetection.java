@@ -1,4 +1,4 @@
-package main;
+package operations;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -8,10 +8,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import main.FileConverter;
+
 public class EdgeDetection {
 
 	private int[][] rowMask = { { -1, -2, -1 }, { 0, 0, 0 }, { 1, 2, 1 } };
-	private int[][] colMask = { { -1, 0, 1 }, { -2, 0, 2 }, { -1, 0, -1 } };
+	private int[][] colMask = { { -1, 0, 1 }, { -2, 0, 2 }, { -1, 0, 1 } };
 	private int width = 0;
 	private int height = 0;
 	private BufferedImage src;

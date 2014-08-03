@@ -1,4 +1,4 @@
-package main;
+package operations;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
+import main.FileConverter;
 
 public class ImageEnhancement {
 

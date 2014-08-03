@@ -4,6 +4,10 @@ import static main.FileConverter.*;
 
 import java.awt.image.BufferedImage;
 
+import operations.EdgeDetection;
+import operations.ImageEnhancement;
+import operations.NoiseCancellation;
+
 public class Main {
 	private static int oper = -1;
 	private BufferedImage inputImg = null;
