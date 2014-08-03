@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import operations.EdgeDetection;
 import operations.ImageEnhancement;
+import operations.MiningHubble;
 import operations.NoiseCancellation;
 
 public class Main {
@@ -37,6 +38,11 @@ public class Main {
 			doImageEnhancement();
 			System.out.println("Done");
 			break;
+		case 4:
+			System.out.println("Mining Space Image selected");
+			doSpaceMining();
+			System.out.println("Done");
+			break;
 
 		default:
 			break;
@@ -59,5 +65,10 @@ public class Main {
 	private static void doImageEnhancement() {
 		ImageEnhancement ie = new ImageEnhancement(f.convert("blurry-moon.tif"));
 		ie.performImageEnhance();
+	}
+	private static void doSpaceMining(){
+		MiningHubble mh =  new MiningHubble(f.convert("hubble.tif"));
+		mh.mineSpace();
+		
 	}
 }

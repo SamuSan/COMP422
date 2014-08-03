@@ -16,9 +16,9 @@ public class ImageEnhancement {
 //	 { -1, 8, -1 },
 //	 { -1, -1, -1 } };
 
-//	private int[][] enhanceMask = { { 0, -1, 0 }, { -1, 5, -1 }, { 0, -1, 0 } };
+	private int[][] enhanceMask = { { 0, -1, 0 }, { -1, 5, -1 }, { 0, -1, 0 } };
 //	private int[][] enhanceMask = { { 1, -2, -1 }, { -2, 5, -2 }, { 1, -2, -1 } };
-	private int[][] enhanceMask = { { -1, -1, -1 }, { -1, 9, -1 }, { -1, -1, -1 } };
+//	private int[][] enhanceMask = { { -1, -1, -1 }, { -1, 9, -1 }, { -1, -1, -1 } };
 
 	private int width = 0;
 	private int height = 0;
