@@ -99,7 +99,7 @@ out = new BufferedImage(tempImg.getWidth(), tempImg.getHeight(), tempImg.getType
 		}
 
 		 FileConverter f = new FileConverter();
-		 f.writeOut(out, "outputEdge");
+		 f.writeOut(out, "outputEdgeDetected");
 	}
 
 }
