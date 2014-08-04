@@ -19,7 +19,10 @@ public class MiningHubble {
 	private Color black = Color.BLACK;
 	private Color white = Color.WHITE;
 
-	private float[][] smthFlt = { { 1/9f, 1/9f, 1/9f }, { 1/9f, 1/9f, 1/9f }, { 1/9f, 1/9f, 1/9f } };
+//	private float[][] smthFlt = { { 1/16f, 1/16f, 1/16f }, { 1/16f, 8/16f, 1/16f }, { 1/16f, 1/16f, 1/16f } };
+	private float[][] smthFlt = { {-1, -1, -1 }, 
+								{ -1, 9, -1 },
+								{ -1, -1, -1 } };
 
 	public MiningHubble(BufferedImage in) {
 		src = in;
@@ -29,23 +32,7 @@ public class MiningHubble {
 		BufferedImage out = new BufferedImage(src.getWidth(), src.getHeight(),
 				src.getType());
 
-		for (int i = 0; i < src.getWidth(); i++) {
-			for (int j = 0; j < src.getHeight(); j++) {
-				if (src.getRGB(i, j) > maxVal) {
-					maxVal = src.getRGB(i, j);
-				}
-				if (src.getRGB(i, j) < minVal) {
-					minVal = src.getRGB(i, j);
-				}
-			}
-		}
-		System.out.println("Min Val : " + minVal + " MaxVal: " + maxVal);
-		System.out.println(Math.abs(maxVal - minVal) / 2);
-		System.out.println("Threshold = " + thres);
-		thres = (maxVal - minVal) / 3;
-		thres = -1 * thres;
-//		thres *= 5;
-		System.out.println("Threshold = " + thres);
+
 		tempImg = new BufferedImage(src.getWidth(), src.getHeight(),
 				src.getType());
 		for (int i = 1; i < src.getWidth() - 1; i++) {
@@ -61,12 +48,32 @@ public class MiningHubble {
 				pixVal += smthFlt[2][0] * src.getRGB(i + 1, j);
 				pixVal += smthFlt[2][1] * src.getRGB(i + 1, j - 1);
 				pixVal += smthFlt[2][2] * src.getRGB(i + 1, j + 1);
-//				System.out.println("Output"+pixVal);
+//				System.out.println("Output"+(int)pixVal);
 				tempImg.setRGB(i, j, (int)pixVal);
 
 			}
 		}
-
+		f.writeOut(tempImg, "smoothTest");
+		
+		for (int i = 0; i < tempImg.getWidth(); i++) {
+			for (int j = 0; j < tempImg.getHeight(); j++) {
+				if (tempImg.getRGB(i, j) > maxVal) {
+					maxVal = tempImg.getRGB(i, j);
+				}
+				if (tempImg.getRGB(i, j) < minVal) {
+					minVal = tempImg.getRGB(i, j);
+				}
+			}
+		}
+		System.out.println("Min Val : " + minVal + " MaxVal: " + maxVal);
+		System.out.println(Math.abs(maxVal - minVal) / 2);
+		System.out.println("Threshold = " + thres);
+		thres = (maxVal - minVal) / 2;
+		thres = -1 * thres;
+//		thres *= 5;
+		System.out.println("Threshold = " + thres);
+		
+		
 		for (int j = 1; j < tempImg.getWidth() - 1; j++) {
 			for (int i = 1; i < tempImg.getHeight() - 1; i++) {
 				ArrayList<Integer> vals = new ArrayList<Integer>();
@@ -90,7 +97,7 @@ public class MiningHubble {
 		
 		
 		
-		f.writeOut(tempImg, "smoothTest");
+
 
 		for (int i = 0; i < tempImg.getWidth(); i++) {
 			for (int j = 0; j < tempImg.getHeight(); j++) {

@@ -60,11 +60,13 @@ public class Main {
 		NoiseCancellation nc = new NoiseCancellation(
 				f.convert("ckt-board-saltpep.tif"));
 		nc.performMedianNoiseCancellation();
+//		nc.performMedianNoiseWithTweakCancellation();
 	}
 
 	private static void doImageEnhancement() {
 		ImageEnhancement ie = new ImageEnhancement(f.convert("blurry-moon.tif"));
 		ie.performImageEnhance();
+//		ie.performImageEnhanceImproved();
 	}
 	private static void doSpaceMining(){
 		MiningHubble mh =  new MiningHubble(f.convert("hubble.tif"));
