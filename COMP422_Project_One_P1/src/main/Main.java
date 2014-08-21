@@ -15,13 +15,20 @@ public class Main {
 	private static FileConverter f = new FileConverter();
 
 	public static void main(String[] args) {
-		if (args.length > 1) {
+		if (args.length > 1 || args.length ==0) {
 			System.out
-					.println("Incorrect Number of Arguments: Please enter '1','2' or '3'");
-		} else {
+					.println("Incorrect Number of Arguments: Please enter either:\n"
+					        + "'1' for Edge Detection\n"
+					        + "'2' for Noise Cancellation Median Operator\n"
+					        + "other programs can be found in the source jar as Python scripts");
+		} 
+
+		else {
 			oper = Integer.parseInt(args[0]);
 		}
-
+if(oper != 1 && oper != 2){
+    System.out.println("Incorrect Selection");
+}
 		switch (oper) {
 		case 1:
 			System.out.println("Edge Detection selected");
@@ -31,16 +38,6 @@ public class Main {
 		case 2:
 			System.out.println("Noise Cancellation selected");
 			doNoiseCancellation();
-			System.out.println("Done");
-			break;
-		case 3:
-			System.out.println("Image Enhancement selected");
-			doImageEnhancement();
-			System.out.println("Done");
-			break;
-		case 4:
-			System.out.println("Mining Space Image selected");
-			doSpaceMining();
 			System.out.println("Done");
 			break;
 
@@ -60,17 +57,7 @@ public class Main {
 		NoiseCancellation nc = new NoiseCancellation(
 				f.convert("ckt-board-saltpep.tif"));
 		nc.performMedianNoiseCancellation();
-//		nc.performMedianNoiseWithTweakCancellation();
 	}
 
-	private static void doImageEnhancement() {
-		ImageEnhancement ie = new ImageEnhancement(f.convert("blurry-moon.tif"));
-		ie.performImageEnhance();
-//		ie.performImageEnhanceImproved();
-	}
-	private static void doSpaceMining(){
-		MiningHubble mh =  new MiningHubble(f.convert("hubble.tif"));
-		mh.mineSpace();
-		
-	}
+
 }
